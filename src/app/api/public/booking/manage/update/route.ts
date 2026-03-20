@@ -147,7 +147,8 @@ export async function POST(request: NextRequest) {
         where: {
           area: { venueId: booking.venueId },
           isActive: true,
-          id: { notIn: [...occupiedIds] },
+          // Array.from ist kompatibel auch ohne '--downlevelIteration'/'ES2015'-Target.
+          id: { notIn: Array.from(occupiedIds) },
         },
         orderBy: [{ area: { sortOrder: "asc" } }, { label: "asc" }],
         select: { id: true },

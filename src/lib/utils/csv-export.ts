@@ -85,11 +85,12 @@ export function bookingsToCSV(bookings: BookingWithRelations[]): string {
     ];
   });
 
-  const escapeCsv = (val: string) => {
-    if (val.includes(";") || val.includes('"') || val.includes("\n")) {
-      return `"${val.replace(/"/g, '""')}"`;
+  const escapeCsv = (val: string | null) => {
+    const v = val ?? "";
+    if (v.includes(";") || v.includes('"') || v.includes("\n")) {
+      return `"${v.replace(/"/g, '""')}"`;
     }
-    return val;
+    return v;
   };
 
   const csvLines = [
