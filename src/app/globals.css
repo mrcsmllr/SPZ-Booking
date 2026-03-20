@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 96%;
+    --foreground: 215 28% 17%;
+  }
+
+  body {
+    @apply bg-landhaus-cream text-landhaus-brown antialiased;
+  }
+
+  /* Elegante Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-landhaus-cream;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-landhaus-green/30;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Stepper-Animation */
+.step-enter {
+  @apply animate-fade-in;
+}
+
+/* Smooth Scroll für den Booking-Flow */
+.booking-container {
+  scroll-behavior: smooth;
+}
+
+/* Landhaus-Stil Akzente */
+.landhaus-card {
+  @apply rounded-xl border border-landhaus-cream-dark bg-white/95 shadow-lg backdrop-blur;
+}
+
+.landhaus-divider {
+  @apply h-px bg-gradient-to-r from-transparent via-landhaus-gold/30 to-transparent;
+}
