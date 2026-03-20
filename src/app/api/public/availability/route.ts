@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAvailability } from "@/lib/booking/availability";
 import { availabilityQuerySchema } from "@/lib/validators/booking.schema";
 
+// Verhindert, dass Next diesen Route Handler statisch rendern/auswerten will.
+// (Der Handler nutzt `request.url`.)
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);

@@ -7,6 +7,10 @@ import {
   getRefundPercent,
 } from "@/lib/booking/cancellation-policy";
 
+// Verhindert statische Auswertung während des Builds.
+// (Dieser Handler nutzt `request.nextUrl.searchParams`.)
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const token = request.nextUrl.searchParams.get("token");

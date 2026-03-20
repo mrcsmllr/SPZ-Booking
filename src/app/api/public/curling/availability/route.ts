@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+// Verhindert statische Auswertung während des Builds.
+// (Dieser Handler nutzt `request.url` für Query-Parameter.)
+export const dynamic = "force-dynamic";
+
 /**
  * GET /api/public/curling/availability?date=2026-11-15&venueId=xxx
  *
