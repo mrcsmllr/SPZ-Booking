@@ -4,6 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 import { bookingActionSchema } from "@/lib/validators/admin.schema";
 
+// Verhindert statische Auswertung/Build-Page-Data durch Next.
+export const dynamic = "force-dynamic";
+
 export async function GET(
   _request: NextRequest,
   { params }: { params: { id: string } }

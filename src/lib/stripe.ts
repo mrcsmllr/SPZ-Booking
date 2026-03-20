@@ -7,10 +7,21 @@ import Stripe from "stripe";
 //
 // Endpunkte, die wirklich Stripe API Calls machen, werden zur Laufzeit fehlschlagen,
 // wenn die echten Keys fehlen. Für euren "ohne Zahlung" Buchungsflow ist das jedoch ok.
-const STRIPE_SECRET_KEY =
-  process.env.STRIPE_SECRET_KEY ?? "sk_test_dummy_placeholder_please_configure";
-const STRIPE_PUBLISHABLE_KEY =
-  process.env.STRIPE_PUBLISHABLE_KEY ?? "pk_test_dummy_placeholder_please_configure";
+function getEnvOrFallback(name: string, fallback: string): string {
+  const v = process.env[name];
+  // Stripe wirft sonst bei leerer String-Value (""), deshalb trimmen + length prüfen.
+  if (!v || v.trim().length === 0) return fallback;
+  return v.trim();
+}
+
+const STRIPE_SECRET_KEY = getEnvOrFallback(
+  "STRIPE_SECRET_KEY",
+  "sk_test_dummy_placeholder_please_configure"
+);
+const STRIPE_PUBLISHABLE_KEY = getEnvOrFallback(
+  "STRIPE_PUBLISHABLE_KEY",
+  "pk_test_dummy_placeholder_please_configure"
+);
 
 export const stripe = new Stripe(STRIPE_SECRET_KEY, {
   apiVersion: "2025-02-24.acacia",
